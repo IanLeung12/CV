@@ -1,214 +1,233 @@
-%-----------------------------------------------------------------------------------------------------------------------------------------------%
-%	The MIT License (MIT)
-%
-%	Copyright (c) 2021 Jitin Nair
-%
-%	Permission is hereby granted, free of charge, to any person obtaining a copy
-%	of this software and associated documentation files (the "Software"), to deal
-%	in the Software without restriction, including without limitation the rights
-%	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-%	copies of the Software, and to permit persons to whom the Software is
-%	furnished to do so, subject to the following conditions:
-%	
-%	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-%	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-%	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-%	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-%	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-%	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-%	THE SOFTWARE.
-%	
-%
-%-----------------------------------------------------------------------------------------------------------------------------------------------%
+%-------------------------
+% Resume in Latex
+% Author : AlgoUniversity
+%------------------------
 
-%----------------------------------------------------------------------------------------
-%	DOCUMENT DEFINITION
-%----------------------------------------------------------------------------------------
+\documentclass[letterpaper,11pt]{article}
 
-% article class because we want to fully customize the page and not use a cv template
-\documentclass[a4paper,12pt]{article}
-
-%----------------------------------------------------------------------------------------
-%	FONT
-%----------------------------------------------------------------------------------------
-
-% % fontspec allows you to use TTF/OTF fonts directly
-% \usepackage{fontspec}
-% \defaultfontfeatures{Ligatures=TeX}
-
-% % modified for ShareLaTeX use
-% \setmainfont[
-% SmallCapsFont = Fontin-SmallCaps.otf,
-% BoldFont = Fontin-Bold.otf,
-% ItalicFont = Fontin-Italic.otf
-% ]
-% {Fontin.otf}
-
-%----------------------------------------------------------------------------------------
-%	PACKAGES
-%----------------------------------------------------------------------------------------
-\usepackage{url}
-\usepackage{parskip} 	
-
-%other packages for formatting
 \RequirePackage{color}
 \RequirePackage{graphicx}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage[scale=0.9]{geometry}
-
-%tabularx environment
-\usepackage{tabularx}
-
-%for lists within experience section
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage{verbatim}
 \usepackage{enumitem}
-
-% centered version of 'X' col. type
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage[dvipsnames]{xcolor}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
 \newcolumntype{C}{>{\centering\arraybackslash}X} 
 
-%to prevent spillover of tabular into next pages
-\usepackage{supertabular}
-\usepackage{tabularx}
-\newlength{\fullcollw}
-\setlength{\fullcollw}{0.47\textwidth}
 
-%custom \section
-\usepackage{titlesec}				
-\usepackage{multicol}
-\usepackage{multirow}
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
 
-%CV Sections inspired by: 
-%http://stefano.italians.nl/archives/26
-\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
-\titlespacing{\section}{0pt}{10pt}{10pt}
-
-%for publications
-\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
 
 %Setup hyperref package, and colours for links
 \usepackage[unicode, draft=false]{hyperref}
 \definecolor{linkcolour}{rgb}{0,0.2,0.6}
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
-\addbibresource{citations.bib}
-\setlength\bibitemsep{1em}
 
-%for social icons
-\usepackage{fontawesome5}
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 
-%debug page outer frames
-%\usepackage{showframe}
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
 
+\urlstyle{same}
 
-% job listing environments
-\newenvironment{jobshort}[2]
-    {
-    \begin{tabularx}{\linewidth}{@{}l X r@{}}
-    \textbf{#1} & \hfill &  #2 \\[3.75pt]
-    \end{tabularx}
-    }
-    {
-    }
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
 
-\newenvironment{joblong}[2]
-    {
-    \begin{tabularx}{\linewidth}{@{}l X r@{}}
-    \textbf{#1} & \hfill &  #2 \\[3.75pt]
-    \end{tabularx}
-    \begin{minipage}[t]{\linewidth}
-    \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt,label=--]
-    }
-    {
-    \end{itemize}
-    \end{minipage}    
-    }
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\color{RoyalBlue}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{RoyalBlue}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
 
 
 
-%----------------------------------------------------------------------------------------
-%	BEGIN DOCUMENT
-%----------------------------------------------------------------------------------------
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \begin{document}
 
-% non-numbered pages
-\pagestyle{empty} 
-
-%----------------------------------------------------------------------------------------
-%	TITLE
-%----------------------------------------------------------------------------------------
-
-% \begin{tabularx}{\linewidth}{ @{}X X@{} }
-% \huge{Your Name}\vspace{2pt} & \hfill \emoji{incoming-envelope} email@email.com \\
-% \raisebox{-0.05\height}\faGithub\ username \ | \
-% \raisebox{-0.00\height}\faLinkedin\ username \ | \ \raisebox{-0.05\height}\faGlobe \ mysite.com  & \hfill \emoji{calling} number
-% \end{tabularx}
-
 \begin{tabularx}{\linewidth}{@{} C @{}}
-\Huge{Your Name} \\[7.5pt]
-\href{https://github.com/username}{\raisebox{-0.05\height}\faGithub\ username} \ $|$ \ 
-\href{https://linkedin.com/in/username}{\raisebox{-0.05\height}\faLinkedin\ username} \ $|$ \ 
-\href{https://mysite.com}{\raisebox{-0.05\height}\faGlobe \ mysite.com} \ $|$ \ 
-\href{mailto:email@mysite.com}{\raisebox{-0.05\height}\faEnvelope \ email@mysite.com} \ $|$ \ 
-\href{tel:+000000000000}{\raisebox{-0.05\height}\faMobile \ +00.00.000.000} \\
+\Huge{Ian Leung} \\[7.5pt]
+\href{https://github.com/IanLeung12}{\raisebox{-0.05\height}\faGithub\ IanLeung12} \ $|$ \ 
+\href{https://www.linkedin.com/in/ianleung12/}{\raisebox{-0.05\height}\faLinkedin\ Ian Leung} \ $|$ \ 
+%\href{https://mysite.com}{\raisebox{-0.05\height}\faGlobe \ mysite.com} \ $|$ \ 
+\href{mailto:ianlemail012@gmail.com}{\raisebox{-0.05\height}\faEnvelope \ ianlemail012@gmail.com} \ $|$ \ 
+\href{tel:+6477633121}{\raisebox{-0.05\height}\faMobile \ 647-763-3121} \\
 \end{tabularx}
 
-%----------------------------------------------------------------------------------------
-% EXPERIENCE SECTIONS
-%----------------------------------------------------------------------------------------
-
-%Interests/ Keywords/ Summary
-\section{Summary}
-This CV can also be automatically complied and published using GitHub Actions. For details, \href{https://github.com/jitinnair1/autoCV}{click here}.
-
-%Experience
+\vspace{-8pt}
+% -----------EXPERIENCE-----------
 \section{Work Experience}
+\resumeSubHeadingListStart
+\resumeSubheading
+{Software Development Intern}{Jul 2025 – Aug 2025}
+{Sunnybrook Research Institute}{}
+\resumeItemListStart
+\resumeItem {Integrated a tool for automating UI release tests, eliminating manual labor, and reducing test times by \textbf{70\%}}
+\resumeItem{Harnessed Python, Qt, and JSON to identify, capture, and replay user interactions with focused ultrasound software}
+\resumeItem{Created a logging API to compare expected and actual results of automated tests, identifying \textbf{5+} software bugs}
+\resumeItemListEnd
+\resumeSubheading
+{Camp Counselor}{Jun 2023 – Jan 2024}
+{The STEAM PROJECT}{}
+\resumeItemListStart
+\resumeItem{Led \textbf{50+} children aged 5 to 10 through exciting hands-on activities and programs}
+\resumeItem{Collaborated with engineering students to create and teach engaging STEM-based lessons for our campers}
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+\vspace{-16pt}
 
-\begin{jobshort}{Designation}{Jan 2021 - present}
-long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width
-\end{jobshort}
+% -----------ACTIVITIES-----------
+\section{Activities}
+\resumeSubHeadingListStart
+    \resumeSubheading
+    {\textbf{Software Developer} } {Sep 2025 - Present}
+    {UW Reality Labs}{}
+    \resumeItemListStart
+        \resumeItem{Designing a Unity Plugin to recognize hand poses on Meta Quest VR Headsets}
+        \resumeItem{Applying Machine Learning/Neural Networks to identify user-inputted hand gestures}
+    \resumeItemListEnd
+    \resumeSubheading
+    {\textbf{CxC Hackathon Coordinator} } {Sep 2025 - Present}
+    {UW Data Science Club}{}
+    \resumeItemListStart
+        \resumeItem{Managing a \textbf{\$10000+} budget to coordinate food and drinks for \textbf{400+} people at Canada's biggest AI hackathon (CxC)}
+    \resumeItemListEnd
+    \resumeSubheading
+    {Club President} {Jun 2024 - Jun 2025}
+    {RHHS Game Development Club}{}
+    \resumeItemListStart
+        \resumeItem{Revamped club curriculum to teach \textbf{Unity Game Development} (from Java/Swing development)}
+        \resumeItem{Led events including \textbf{game jams} and lessons to 15+ members}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+\vspace{-16pt}
 
-
-\begin{joblong}{Designation}{Mar 2019 - Jan 2021}
-\item long long line of blah blah that will wrap when the table fills the column width
-\item again, long long line of blah blah that will wrap when the table fills the column width but this time even more long long line of blah blah. again, long long line of blah blah that will wrap when the table fills the column width but this time even more long long line of blah blah
-\end{joblong}
-  
-%Projects
+%-----------PROJECTS-----------
 \section{Projects}
+\vspace{-5pt}
+\resumeSubHeadingListStart
+    \resumeProjectHeading{\textbf{Trust No Ghost: UWGDC Game Jam Spring 2025 Submission}}{\href{https://ianleung12.itch.io/trust-no-ghost}{\underline{Game Link}}}
+    \resumeItemListStart
+        \resumeItem{3D maze exploration game in which you identify and feed candy to good enemies with \textbf{60+ visits}}
+        \resumeItem{Developed on Unity Game Engine,  with dynamic movement mechanics and enemy pathfinding algorithms}
+    \resumeItemListEnd
+    \vspace{-18pt}
+    \resumeProjectHeading{\textbf{PeerAssist: Peer reviewing and editing platform for students }}{\href{https://github.com/IanLeung12/PeerAssist}{\underline{Link to Source}}}
+    \resumeItemListStart
+        \resumeItem{Java-based platform for students to share, review and grade the works of others}
+        \resumeItem{Uses \textbf{MongoDB Atlas}, \textbf{Apache PDFBox}, and \textbf{Maven }to display, manage and store user documents}
+    \resumeItemListEnd
+    \vspace{-18pt}
+    \resumeProjectHeading{\textbf{Other Projects}}{}
+    \resumeItemListStart
+        \resumeItem{\textbf{N-body Simulation:} WIP gravity simulation with Barnes-Hut algorithm. Uses Pyglet, Numpy, Numba, Pandas}
+        \resumeItem{\href{https://github.com/IanLeung12/ai-skill-showcase}{\textbf{K-Pop Idol Recognizer:}} LBPH Facial Detection and Recognition. Used OpenCV, Kaggle, Pandas, Numpy}
+        \resumeItem{\href{https://github.com/IanLeung12/AI-Name-Forecasting}{\textbf{AI Name Forecasting:}} Predicting future outlook using AI, based on Implicit Egotism. Used OpenAI API}
+        \resumeItem{\href{https://github.com/IanLeung12/Pinance}{\textbf{Pinance:}} Financial analysis and machine learning. Used Numpy, Pandas, Beautiful Soup, Sklearn, Matplotlib}
+    \resumeItemListEnd
+    \vspace{-15pt}
+    
+\resumeSubHeadingListEnd
+\vspace{-1pt}
 
-\begin{tabularx}{\linewidth}{ @{}l r@{} }
-\textbf{Some Project} & \hfill \href{https://some-link.com}{Link to Demo} \\[3.75pt]
-\multicolumn{2}{@{}X@{}}{long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width}  \\
-\end{tabularx}
-
-%----------------------------------------------------------------------------------------
-%	EDUCATION
-%----------------------------------------------------------------------------------------
+%-----------EDUCATION-----------
 \section{Education}
-\begin{tabularx}{\linewidth}{@{}l X@{}}	
-2030 - present & PhD (Subject) at \textbf{University} \hfill \normalsize (GPA: 4.0/4.0) \\
+\resumeSubHeadingListStart
+\resumeSubheading
+{University of Waterloo}{Expected 2030} 
+{Bachelor of Computing and Financial Management (Computer Science + Finance Double Major)}{GPA: 4.0}
+\resumeSubHeadingListEnd
+\vspace{-10pt}
 
-2023 - 2027 & Bachelor's Degree at \textbf{College} \hfill (GPA: 4.0/4.0) \\ 
-
-2022 & Class 12th Some Board \hfill  (Grades) \\
-
-2021 & Class 10th Some Board \hfill  (Grades) \\
-\end{tabularx}
-
-%----------------------------------------------------------------------------------------
-%	PUBLICATIONS
-%----------------------------------------------------------------------------------------
-\section{Publications}
-\begin{refsection}[citations.bib]
-\nocite{*}
-\printbibliography[heading=none]
-\end{refsection}
-
-%----------------------------------------------------------------------------------------
-%	SKILLS
-%----------------------------------------------------------------------------------------
+%-----------SKILLS-----------
 \section{Skills}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-Some Skills &  \normalsize{This, That, Some of this and that etc.}\\
-Some More Skills  &  \normalsize{Also some more of this, Some more that, And some of this and that etc.}\\  
+
+\begin{tabularx}{\linewidth}{@{}l@{\hspace{0.5em}}X@{}}
+Languages &  \normalsize{Python, Java, C++, Racket, C\#}\\
+Technologies  &  \normalsize{Linux,  Firebase, MongoDB, Qt, Unity Game Engine, Python Data Analysis}\\ 
+Developer Tools &  \normalsize{Gitlab,  Github, Colab, Jupyter, VSCode, Copilot}\\
+Software  &  \normalsize{Notion, Office 365, Adobe Photoshop, Illustrator, Premiere Pro}\\ 
+Soft Skills &  \normalsize{Hard working, leadership, critical thinking, communication, creativity, and group/independent work}\\
+Awards & \normalsize{ECA - 7th Internationally, 2x International Qualifier; Galois Math Contest - Group IV Honor Roll; CSMC/CIMC/Fermat - Distinction; University of Guelph Business Pentathlon - 3rd Overall Winner}\\
 \end{tabularx}
 
 \vfill
